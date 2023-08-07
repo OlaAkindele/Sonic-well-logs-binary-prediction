@@ -1,0 +1,8 @@
+numpy
+matplotlib
+pandas
+petrolib
+scikit-learn
+seaborn
+joblib
+optuna
