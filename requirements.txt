@@ -5,4 +5,3 @@ petrolib
 scikit-learn
 seaborn
 joblib
-optuna
