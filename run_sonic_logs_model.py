@@ -11,6 +11,7 @@ import argparse
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
+from petrolib.plots import plotLog, plotLogs
 import petrolib  # Petrophysical evaluation package
 
 from petrolib.file_reader import load_las
@@ -30,7 +31,8 @@ def parse_arguments():
     """
     parser = argparse.ArgumentParser(description="Sonic Logs Models")
     # parser.add_argument('--data', type=str, default= files, help="Path to the dataset las file.")
-    # parser.add_argument('--plotLogs', action='store_true', help="Flag to plot the plotLogs results.")
+    parser.add_argument('--test_dataframe', action='store_true', help="Flag to display dataframe of well7 (test)")
+    parser.add_argument('--test_plotLogs', action='store_true', help="Flag to plot the plotLogs results.")
     return parser.parse_args()
 
 def run_sonic_logs_model ():
@@ -63,11 +65,13 @@ def run_sonic_logs_model ():
     test_prediction, metrics = predict_evaluate(model, test_x, test_y)
     
     # plot the confusion matrices
-    # if args.plotLogs:
-    #     plotLogs(wells[6], depth='DEPTH', logs=['GR', 'RT', 'RHOB', 'NPHI', ['DTC', 'Pred DTC'], ['DTS', 'Pred DTS']], 
-    #      top=min(wells[6]['DEPTH']), bottom=max(wells[6]['DEPTH']), figsize=(16,16), title='well7 : 35_11-11')
+    if args.test_dataframe:
+        well7 = wells[6]
+        well7[['Pred DTC', 'Pred DTS']] = test_prediction
+
+        print(well7)
     
-    
+
     
 if __name__ == "__main__":
     run_sonic_logs_model()  
