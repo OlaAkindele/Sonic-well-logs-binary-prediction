@@ -71,6 +71,12 @@ def run_sonic_logs_model ():
 
         print(well7)
     
+    # plot the well log of the test (well 7)
+    if args.test_plotLogs:
+        well7 = wells[6]
+        well7[['Pred DTC', 'Pred DTS']] = test_prediction
+        plotLogs(well7, depth='DEPTH', logs=['GR', 'RT', 'RHOB', 'NPHI', ['DTC', 'Pred DTC'], ['DTS', 'Pred DTS']], 
+         top=min(well7['DEPTH']), bottom=max(well7['DEPTH']), figsize=(8,8), title='well7 : 35_11-11')
 
     
 if __name__ == "__main__":
